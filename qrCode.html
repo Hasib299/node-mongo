@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="./qrcode.min.js"></script>
+    <title>QR Code generator</title>
+    <style>
+        body{
+            color: #0011f8;
+        }
+    </style>
+  </head>
+  <body>
+    <button onclick="generateCode()">Generate Code</button>
+    <br />
+    <br />
+    <textarea name="qrCod" id="inputQR" cols="22" rows="5"></textarea>
+    <div class="" id="showCode"></div>
+
+    <button onclick="clearCode()">clear code</button>
+
+    <script>
+      let inputQR = document.getElementById("inputQR");
+      let showCode = document.getElementById("showCode");
+
+      const qrImage = new QRCode(showCode, {
+        // text: "http://jindo.dev.naver.com/collie",
+        width: 200,
+        height: 200,
+        colorDark: "#0011f8",
+        colorLight: "#ffffff",
+        correctLevel: QRCode.CorrectLevel.H,
+      });
+
+      function generateCode() {
+        if (!inputQR.value) {
+          alert("Please provide a valid text or url !");
+        } else {
+          let data = inputQR.value;
+          //   alert(data)
+          qrImage.makeCode(data);
+        }
+      }
+
+      function clearCode() {
+        qrImage.clear();
+      }
+    </script>
+  </body>
+</html>

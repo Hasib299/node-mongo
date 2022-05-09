@@ -3,8 +3,10 @@ const os = require('os')
 
 const app = express()
 
-app.get('/', (req,res,next) =>{
-    res.send(os.platform())
+let nam
+
+app.get('/:name', (req,res,next) =>{
+    res.send(os.userInfo().username + ''+ req.params.name)
 })
 
 app.listen(3000, () =>{
